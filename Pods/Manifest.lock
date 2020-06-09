@@ -1,0 +1,20 @@
+PODS:
+  - Alamofire (5.0.5)
+  - AMProgressBar (0.1.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.0.2-rc.2)
+  - AMProgressBar
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AMProgressBar
+
+SPEC CHECKSUMS:
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
+  AMProgressBar: 3f4671c4af4cb4fc9864ddc0a688450c8c7d1561
+
+PODFILE CHECKSUM: 6b3be9cc5131b13fd95927ccee823804d4ac3511
+
+COCOAPODS: 1.9.3
