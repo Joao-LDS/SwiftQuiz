@@ -26,7 +26,7 @@ class QuestionAPI {
                     guard let questionValue = dict["question"] as? String else { return }
                     guard let optionsValue = dict["options"] as? [String] else { return }
                     guard let correctAnswerValue = dict["correctAnswer"] as? String else { return }
-                    let question = Question(questionValue, optionsValue, correctAnswerValue)
+                    let question = Question(question: questionValue, options: optionsValue, correctAnswer: correctAnswerValue)
                     array.append(question)
                 }
                 onComplete(array)

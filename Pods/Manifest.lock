@@ -1,20 +1,20 @@
 PODS:
   - Alamofire (5.0.5)
-  - AMProgressBar (0.1.0)
+  - SteviaLayout (4.7.3)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.2-rc.2)
-  - AMProgressBar
+  - SteviaLayout
 
 SPEC REPOS:
   trunk:
     - Alamofire
-    - AMProgressBar
+    - SteviaLayout
 
 SPEC CHECKSUMS:
   Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
-  AMProgressBar: 3f4671c4af4cb4fc9864ddc0a688450c8c7d1561
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
 
-PODFILE CHECKSUM: 6b3be9cc5131b13fd95927ccee823804d4ac3511
+PODFILE CHECKSUM: 367840672b4324020376a3275a57b66292b32719
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.9.1
