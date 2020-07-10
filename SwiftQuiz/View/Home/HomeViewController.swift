@@ -64,7 +64,7 @@ extension HomeViewController: ViewConfiguration {
         button.addTarget(self, action: #selector(handleButton), for: .touchUpInside)
         
         imageView.image = UIImage(named: "logo")
-        imageView.layer.shadowColor = UIColor.black.cgColor
+        imageView.layer.shadowColor = UIColor(named: "principal_color")?.cgColor
         imageView.layer.shadowOffset = .zero
         imageView.layer.shadowRadius = 5
         imageView.layer.shadowOpacity = 0.2
@@ -73,6 +73,5 @@ extension HomeViewController: ViewConfiguration {
         label.font = label.font.withSize(45)
         
     }
-    
     
 }

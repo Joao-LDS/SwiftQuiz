@@ -14,7 +14,7 @@ class QuizViewController: UIViewController {
     // MARK: - Properties
     
     private var webservice = QuestionAPI()
-    private var viewModel = QuizViewModel()
+    private var viewModel: QuizViewModel!
     
     private lazy var label = CustomLabel()
     
@@ -37,6 +37,10 @@ class QuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         setupViewModel()
     }
 
@@ -45,10 +49,7 @@ class QuizViewController: UIViewController {
     @objc func handleOption(_ sender: CustomButtonOptions) {
         guard let index = buttons.firstIndex(of: sender) else { return }
         viewModel.validateAnswer(at: index)
-        viewModel.setCurrencyQuestion()
-        setQuestion()
-        setOptions()
-
+        updateQuiz()
     }
     
     // MARK: - Functions
@@ -65,14 +66,31 @@ class QuizViewController: UIViewController {
     }
     
     private func setupViewModel() {
+        self.viewModel = QuizViewModel()
         viewModel.delegate = self
         viewModel.fetchQuestions { sucess in
             if sucess {
-                self.viewModel.setCurrencyQuestion()
-                self.setQuestion()
-                self.setOptions()
+                self.updateQuiz()
             }
         }
+    }
+    
+    private func updateQuiz() {
+        viewModel.setCurrencyQuestion()
+        setQuestion()
+        setOptions()
+    }
+
+}
+
+extension QuizViewController: QuizViewModelDelegate {
+    
+    func presentResultViewController() {
+        let result = Result(correct: viewModel.returnCorrectAnswer(), wrong: viewModel.returnWrongAnswer())
+        let viewModel = ResultViewModel(result)
+        let resultViewController = ResultViewController(viewModel: viewModel)
+        resultViewController.modalPresentationStyle = .fullScreen
+        self.present(resultViewController, animated: true, completion: nil)
     }
 
 }
@@ -90,7 +108,7 @@ extension QuizViewController: ViewConfiguration {
     
     func addConstraints() {
         view.layout(
-            label.height(60%).width(100%),
+            label.height(60%).left(16).right(16),
             stackView.left(5%).right(5%).bottom(5%).height(40%)
         )
         for button in buttons {
@@ -118,15 +136,4 @@ extension QuizViewController: ViewConfiguration {
         }
     }
     
-}
-
-extension QuizViewController: QuizViewModelDelegate {
-    
-    func presentResultViewController() {
-        let resultViewController = ResultViewController()
-        resultViewController.modalPresentationStyle = .fullScreen
-        self.present(resultViewController, animated: true, completion: nil)
-        print("jjjojojojojojo")
-    }
-
 }

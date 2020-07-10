@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,30 +17,33 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SwiftQuiz" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFd-hA-xWe">
-                                <rect key="frame" x="0.0" y="686" width="414" height="52"/>
+                                <rect key="frame" x="0.0" y="491" width="375" height="52"/>
                                 <fontDescription key="fontDescription" name="MyriadSetPro-Text" family="Myriad Set Pro" pointSize="48"/>
                                 <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="0.80256932219999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oF-46-vR4">
-                                <rect key="frame" x="0.0" y="773" width="414" height="22"/>
+                                <rect key="frame" x="0.0" y="578" width="375" height="22"/>
                                 <fontDescription key="fontDescription" name="MyriadSetPro-Text" family="Myriad Set Pro" pointSize="20"/>
                                 <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="0.80256932219999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="João Santos" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ahh-vU-yYb">
-                                <rect key="frame" x="0.0" y="815" width="414" height="22"/>
+                                <rect key="frame" x="0.0" y="620" width="375" height="22"/>
                                 <fontDescription key="fontDescription" name="MyriadSetPro-Text" family="Myriad Set Pro" pointSize="20"/>
                                 <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="0.80256932219999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="tDw-Wp-bdi">
-                                <rect key="frame" x="5" y="260" width="404" height="293"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="tDw-Wp-bdi">
+                                <rect key="frame" x="-12.5" y="183.5" width="400" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="dlg-lN-ukp"/>
+                                    <constraint firstAttribute="height" constant="300" id="szo-mL-VW6"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -49,9 +52,11 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MFd-hA-xWe" secondAttribute="trailing" id="FxB-ZG-X2d"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ahh-vU-yYb" secondAttribute="bottom" constant="25" id="W8h-HD-1wS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ahh-vU-yYb" secondAttribute="trailing" id="YYL-gW-WLF"/>
+                            <constraint firstItem="tDw-Wp-bdi" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ara-Gi-B5w"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3oF-46-vR4" secondAttribute="trailing" id="cuS-1u-rLk"/>
                             <constraint firstItem="Ahh-vU-yYb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fWe-At-cwg"/>
                             <constraint firstItem="3oF-46-vR4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fhG-rw-uua"/>
+                            <constraint firstItem="tDw-Wp-bdi" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="jYm-PU-IZT"/>
                             <constraint firstItem="3oF-46-vR4" firstAttribute="top" secondItem="MFd-hA-xWe" secondAttribute="bottom" constant="35" id="nom-62-J9a"/>
                             <constraint firstItem="MFd-hA-xWe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vA3-zG-9je"/>
                         </constraints>

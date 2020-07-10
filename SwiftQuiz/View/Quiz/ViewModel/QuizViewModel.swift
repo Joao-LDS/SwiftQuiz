@@ -12,13 +12,15 @@ protocol QuizViewModelDelegate {
     func presentResultViewController()
 }
 
-class QuizViewModel: UIViewController {
+
+class QuizViewModel {
     
     private var data: [Question] = []
     private var currencyQuestion: Question?
     private let webservice =  QuestionAPI()
     var delegate: QuizViewModelDelegate?
     private var correctAnswer = 0
+    private var wrongAnswer = 0
     
     func fetchQuestions(completion: @escaping (Bool) -> Void) {
         self.webservice.request { response in
@@ -50,11 +52,17 @@ class QuizViewModel: UIViewController {
         if answer == currencyQuestion?.correctAnswer {
             correctAnswer += 1
             print("Respostas corretas: ", correctAnswer)
+        } else {
+            wrongAnswer += 1
         }
     }
     
     func returnCorrectAnswer() -> Int {
         return correctAnswer
+    }
+    
+    func returnWrongAnswer() -> Int {
+        return wrongAnswer
     }
     
 }
