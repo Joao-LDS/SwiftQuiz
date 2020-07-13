@@ -32,7 +32,7 @@ extension CustomLabel: ViewConfiguration {
     
     func additionalConfiguration() {
         font = UIFont(name: "MyriadSetPro-Text", size: 16)
-        textColor = UIColor(named: "second_color")
+        textColor = UIColor().secondColor()
     }
     
     

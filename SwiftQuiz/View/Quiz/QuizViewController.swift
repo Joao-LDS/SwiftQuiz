@@ -122,7 +122,7 @@ extension QuizViewController: ViewConfiguration {
         
         label.text = "Carregando o quiz. Por favor aguarde..."
         label.numberOfLines = 0
-        label.textColor = UIColor(named: "principal_color")
+        label.textColor = UIColor().principalColor()
         label.font = label.font.withSize(25)
         label.textAlignment = .center
         

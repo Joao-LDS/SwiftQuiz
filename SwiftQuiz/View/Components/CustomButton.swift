@@ -32,7 +32,7 @@ extension CustomButton: ViewConfiguration {
     
     func additionalConfiguration() {
         titleLabel?.font = UIFont.init(name: "MyriadSetPro-Text", size: 35)
-        backgroundColor = UIColor(named: "principal_color")
+        backgroundColor = UIColor().principalColor()
         layer.cornerRadius = 5.0
     }
     

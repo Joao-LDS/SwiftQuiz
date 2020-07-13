@@ -33,8 +33,8 @@ extension CustomButtonOptions: ViewConfiguration {
         backgroundColor = .white
         titleLabel?.font = UIFont(name: "MyriadSetPro-Text", size: 18)
         titleLabel?.numberOfLines = 2
-        setTitleColor(UIColor(named: "second_color"), for: .normal)
-        layer.shadowColor = UIColor(named: "principal_color")?.cgColor
+        setTitleColor(UIColor().secondColor(), for: .normal)
+        layer.shadowColor = UIColor().principalColor().cgColor
         layer.shadowOffset = .zero
         layer.shadowRadius = 5
         layer.shadowOpacity = 0.2
