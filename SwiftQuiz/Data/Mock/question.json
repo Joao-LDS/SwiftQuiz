@@ -1,0 +1,11 @@
+{
+  "options": [
+    "20",
+    "\"Olá mundo\"",
+    "Olá mundo",
+    "'Olá mundo'"
+  ],
+  "_id": "5ed6b5d6cb1d500017884af8",
+  "question": "Quais desses é string?",
+  "correctAnswer": "\"Olá mundo\""
+}

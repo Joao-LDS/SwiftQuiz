@@ -1,0 +1,134 @@
+[
+  {
+    "options": [
+      "20",
+      "\"Olá mundo\"",
+      "Olá mundo",
+      "'Olá mundo'"
+    ],
+    "_id": "5ed6b5d6cb1d500017884af8",
+    "question": "Quais desses é string?",
+    "correctAnswer": "\"Olá mundo\""
+  },
+  {
+    "options": [
+      "11",
+      "\"2\"",
+      "\"11\"",
+      "\"1 1\""
+    ],
+    "_id": "5ed6b9ddcb1d500017884afb",
+    "question": "Qual é o resultado da expressão \"1\" + \"1\"?",
+    "correctAnswer": "\"11\""
+  },
+  {
+    "options": [
+      "/",
+      "\\",
+      "!",
+      "ESC"
+    ],
+    "_id": "5ed7a37424840600177111f5",
+    "question": "Qual desses símbolos é usado para \"escapar\" caracteres especiais?",
+    "correctAnswer": "\\"
+  },
+  {
+    "options": [
+      "func = myFunction() {}",
+      "let myFunction = func() {}",
+      "let func = myFunction() {}",
+      "func myFunction() {}"
+    ],
+    "_id": "5ed7a3bd24840600177111f6",
+    "question": "Qual a sintaxe correta para declarar uma função?",
+    "correctAnswer": "func myFunction() {}"
+  },
+  {
+    "options": [
+      "Void",
+      "Int",
+      "String",
+      "nil"
+    ],
+    "_id": "5ed7a43624840600177111f7",
+    "question": "Quando não declaramos o tipo de retorno de uma função, qual é o retorno padrão?",
+    "correctAnswer": "Void"
+  },
+  {
+    "options": [
+      "func myFunc(String message) {}",
+      "func myFunc(let message = String) {}",
+      "func myFunc(message String) {}",
+      "func myFunc(message: String) {}"
+    ],
+    "_id": "5ed7a4bb24840600177111f8",
+    "question": "Qual é a sintaxe correta para declarar um parâmetro?",
+    "correctAnswer": "func myFunc(message: String) {}"
+  },
+  {
+    "options": [
+      "String",
+      "String?",
+      "Int",
+      "Void"
+    ],
+    "_id": "5ed7a4ee24840600177111f9",
+    "question": "Qual é o tipo de uma variavél String que pode aceitar nil?",
+    "correctAnswer": "String?"
+  },
+  {
+    "options": [
+      "var",
+      "const",
+      "let",
+      "private"
+    ],
+    "_id": "5ed7a52624840600177111fa",
+    "question": "Quando queremos declarar uma constante, qual palavra reservada devemos usar?",
+    "correctAnswer": "let"
+  },
+  {
+    "options": [
+      "É uma coleção que não aceita objetos repetidos",
+      "É uma coleção ordenada com chave e valor",
+      "É uma coleção não ordenada com chave e valor",
+      "É uma coleção que permite apenas String"
+    ],
+    "_id": "5ed7a5c024840600177111fb",
+    "question": "O que é um Dictionary?",
+    "correctAnswer": "É uma coleção não ordenada com chave e valor"
+  },
+  {
+    "options": [
+      "Anonymous",
+      "Block",
+      "Closure",
+      "Protocol"
+    ],
+    "_id": "5ed7a63b24840600177111fc",
+    "question": "Qual o nome do tipo especial que é usado para declarar blocos ou funções anônimas?",
+    "correctAnswer": "Closure"
+  },
+  {
+    "options": [
+      "As duas",
+      "Somente Class",
+      "Somente Struct",
+      "Nenhuma"
+    ],
+    "_id": "5ed7a8d424840600177111fd",
+    "question": "Class vs Struct, qual delas pode trabalhar com herança?",
+    "correctAnswer": "Somente Class"
+  },
+  {
+    "options": [
+      "main.init",
+      "super.init",
+      "self.init",
+      "superconstructor"
+    ],
+    "_id": "5ed7a9d424840600177111fe",
+    "question": "Quando herdamos de uma classe e queremos chamar o seu construtor, usamos:",
+    "correctAnswer": "super.init"
+  }
+]
