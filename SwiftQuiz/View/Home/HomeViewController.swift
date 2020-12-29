@@ -7,71 +7,50 @@
 //
 
 import UIKit
-import Stevia
 
 class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
+    let viewModel: HomeViewModel
+    var uiview: HomeView
     
-    private lazy var label = CustomLabel()
+    // MARK: - Init
     
-    private lazy var button = CustomButton()
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        uiview = HomeView()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - View Life Cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        configureView()
+    }
+    
+    override func loadView() {
+        self.view = uiview
+    }
+    
+    // MARK: - Functions
+    
+    func configureView() {
+        uiview.button.addTarget(self, action: #selector(self.handleButton), for: .touchUpInside)
     }
     
     // MARK: - Selector
     
     @objc func handleButton() {
-        let quiz = QuizViewController()
-        present(quiz, animated: true, completion: nil)
-    }
-    
-}
-
-extension HomeViewController: ViewConfiguration {
-    func buildView() {
-        view.sv(
-            imageView,
-            label,
-            button
-        )
-    }
-    
-    func addConstraints() {
-        self.view.layout(
-            imageView.centerHorizontally().top(10%).size(250),
-            50,
-            label.centerHorizontally(),
-            "",
-            button.right(5%).bottom(5%).left(5%).height(7%)
-        )
-    }
-    
-    func additionalConfiguration() {
-        view.backgroundColor = .white
-        
-        button.setTitle("Iniciar", for: .normal)
-        button.addTarget(self, action: #selector(handleButton), for: .touchUpInside)
-        
-        imageView.image = UIImage(named: "logo")
-        imageView.layer.shadowColor = UIColor().principalColor().cgColor
-        imageView.layer.shadowOffset = .zero
-        imageView.layer.shadowRadius = 5
-        imageView.layer.shadowOpacity = 0.2
-        
-        label.text = "SwiftQuiz"
-        label.font = label.font.withSize(45)
-        
+        let viewModel = QuizViewModel()
+        let controller = QuizViewController(viewModel: viewModel)
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true, completion: nil)
     }
     
 }

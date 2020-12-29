@@ -9,6 +9,8 @@
 import UIKit
 
 class CustomButtonOptions: UIButton {
+    
+    // MARK: - Init
 
     init() {
         super.init(frame: .zero)
@@ -21,12 +23,12 @@ class CustomButtonOptions: UIButton {
     
 }
 
+// MARK: - ViewConfiguration
+
 extension CustomButtonOptions: ViewConfiguration {
-    func buildView() {
-    }
+    func buildView() { }
     
-    func addConstraints() {
-    }
+    func addConstraints() { }
     
     func additionalConfiguration() {
         layer.cornerRadius = 10
@@ -39,6 +41,5 @@ extension CustomButtonOptions: ViewConfiguration {
         layer.shadowRadius = 5
         layer.shadowOpacity = 0.2
     }
-    
     
 }

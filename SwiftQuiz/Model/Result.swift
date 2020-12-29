@@ -9,8 +9,7 @@
 import Foundation
 
 struct Result {
-    
-    let correct: Int
-    let wrong: Int
-    
+    let correctAnswers: Int
+    let wrongAnswers: Int
+    let numberOfQuestions: Int
 }

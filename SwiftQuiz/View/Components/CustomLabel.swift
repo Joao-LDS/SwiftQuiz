@@ -23,17 +23,16 @@ class CustomLabel: UILabel {
     
 }
 
+// MARK: - ViewConfiguration
+
 extension CustomLabel: ViewConfiguration {
-    func buildView() {
-    }
+    func buildView() { }
     
-    func addConstraints() {
-    }
+    func addConstraints() { }
     
     func additionalConfiguration() {
         font = UIFont(name: "MyriadSetPro-Text", size: 16)
         textColor = UIColor().secondColor()
     }
-    
     
 }

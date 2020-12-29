@@ -13,26 +13,17 @@ class QuestionAPI {
     
     let url = "https://swiftquiz-app.herokuapp.com/question"
 
-    func request(onComplete: @escaping ([Question]) -> Void) {
-        AF.request(url).responseJSON { (response) in
+    func request(onComplete: @escaping ([Question]?) -> Void) {
+        AF.request(url).responseJSON { response in
             switch response.result {
-            case .success(let value):
-                print("Sucess to making the request.")
-                // Casting JSON type Any to Dictionary.
-                guard let dicts = value as? [[String:Any]] else { return }
-                // Casting Dictionary to Array
-                var array: [Question] = []
-                for dict in dicts {
-                    guard let questionValue = dict["question"] as? String else { return }
-                    guard let optionsValue = dict["options"] as? [String] else { return }
-                    guard let correctAnswerValue = dict["correctAnswer"] as? String else { return }
-                    let question = Question(question: questionValue, options: optionsValue, correctAnswer: correctAnswerValue)
-                    array.append(question)
+            case .success:
+                guard let data = response.data else { return }
+                if let questions = try? JSONDecoder().decode([Question].self, from: data) {
+                    onComplete(questions)
                 }
-                onComplete(array)
             case .failure(let error):
                 print("Request error: \(error)")
-                onComplete([])
+                onComplete(nil)
             }
         }
     }
