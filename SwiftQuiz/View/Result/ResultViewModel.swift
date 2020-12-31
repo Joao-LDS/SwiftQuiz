@@ -8,11 +8,17 @@
 
 import Foundation
 
+protocol ResultViewModelProtocol {
+    var correctAnswers: Int { get }
+    var wrongAnswers: Int { get }
+    func getResult() -> Int
+}
+
 class ResultViewModel {
     
     // MARK: - Properties
     
-    let result: Result
+    private let result: Result
     
     // MARK: - Init
 
@@ -20,7 +26,17 @@ class ResultViewModel {
         self.result = result
     }
     
-    // MARK: - Functions
+}
+
+extension ResultViewModel: ResultViewModelProtocol {
+    
+    var correctAnswers: Int {
+        result.correctAnswers
+    }
+    
+    var wrongAnswers: Int {
+        result.wrongAnswers
+    }
     
     func getResult() -> Int {
         let correct = result.correctAnswers

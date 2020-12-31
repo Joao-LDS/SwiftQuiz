@@ -1,20 +1,28 @@
 PODS:
   - Alamofire (5.0.5)
+  - Nimble (9.0.0)
+  - Quick (3.0.0)
   - SteviaLayout (4.7.3)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.2-rc.2)
+  - Nimble
+  - Quick
   - SteviaLayout
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Nimble
+    - Quick
     - SteviaLayout
 
 SPEC CHECKSUMS:
   Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
+  Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
+  Quick: 6d9559f40647bc4d510103842ef2fdd882d753e2
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
 
-PODFILE CHECKSUM: 367840672b4324020376a3275a57b66292b32719
+PODFILE CHECKSUM: f61b4867f12b12f24a8f6cee85512224a6fcb17a
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

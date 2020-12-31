@@ -12,12 +12,12 @@ class QuizViewController: UIViewController {
 
     // MARK: - Properties
     
-    let viewModel: QuizViewModel
+    var viewModel: QuizViewModelProtocol
     var uiview: QuizView
     
     // MARK: - Init
     
-    init(viewModel: QuizViewModel) {
+    init(viewModel: QuizViewModelProtocol) {
         self.viewModel = viewModel
         uiview = QuizView()
         super.init(nibName: nil, bundle: nil)
@@ -31,8 +31,7 @@ class QuizViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.delegate = self
-        viewModel.fetchQuestions()
+        setupViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,14 +44,29 @@ class QuizViewController: UIViewController {
     
     // MARK: - Functions
     
+    func setupViewModel() {
+        viewModel.fetchQuestions { finish in
+            if finish == true {
+                self.configureView()
+                self.configureButtonsOptionsTarget()
+                self.viewModel.delegate = self
+            }
+        }
+    }
+    
     func configureView() {
         viewModel.setCurrencyQuestion()
-        uiview.questionLabel.text = viewModel.currencyQuestion?.question
+        uiview.questionLabel.text = viewModel.question
         uiview.closeButton.addTarget(self, action: #selector(self.handleCloseButton), for: .touchUpInside)
         
-        let options = viewModel.currencyQuestion?.options
+        let options = viewModel.options
         for i in 0..<uiview.optionsButtons.count {
-            uiview.optionsButtons[i].setTitle(options?[i], for: .normal)
+            uiview.optionsButtons[i].setTitle(options[i], for: .normal)
+        }
+    }
+    
+    func configureButtonsOptionsTarget() {
+        for i in 0..<uiview.optionsButtons.count {
             uiview.optionsButtons[i].addTarget(self, action: #selector(self.handleOption(_:)), for: .touchUpInside)
         }
     }
@@ -62,8 +76,7 @@ class QuizViewController: UIViewController {
     @objc func handleOption(_ sender: CustomButtonOptions) {
         guard let index = uiview.optionsButtons.firstIndex(of: sender) else { return }
         viewModel.validateAnswer(at: index)
-        viewModel.incrementNumberOfQuestions()
-        updateView()
+        configureView()
     }
     
     @objc func handleCloseButton() {
@@ -75,15 +88,10 @@ class QuizViewController: UIViewController {
 // MARK: - QuizViewModelDelegate
 
 extension QuizViewController: QuizViewModelDelegate {
-    func presentResultViewController(With result: Result) {
-        let viewModel = ResultViewModel(result: result)
-        let resultViewController = ResultViewController(viewModel: viewModel)
-        resultViewController.modalPresentationStyle = .fullScreen
-        present(resultViewController, animated: true, completion: nil)
-    }
     
-    func updateView() {
-        configureView()
+    func presentResultViewController(With result: Result) {
+        let controller = viewModel.resultViewController()
+        present(controller, animated: true, completion: nil)
     }
 }
 

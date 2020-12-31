@@ -12,7 +12,7 @@ class ResultViewController: UIViewController {
    
     // MARK: - Properties
     
-    let viewModel: ResultViewModel
+    let viewModel: ResultViewModelProtocol
     var uiview: ResultView
     
     // MARK: - Init
@@ -42,8 +42,8 @@ class ResultViewController: UIViewController {
     
     func configureView() {
         uiview.button.addTarget(self, action: #selector(self.handleButton), for: .touchUpInside)
-        uiview.numberOfCorrectLabel.text = "\(viewModel.result.correctAnswers)"
-        uiview.numberOfWrongLabel.text = "\(viewModel.result.wrongAnswers)"
+        uiview.numberOfCorrectLabel.text = "\(viewModel.correctAnswers)"
+        uiview.numberOfWrongLabel.text = "\(viewModel.wrongAnswers)"
         uiview.resultLabel.text = "\(viewModel.getResult())%"
         uiview.button.addTarget(self, action: #selector(handleButton), for: .touchUpInside)
     }

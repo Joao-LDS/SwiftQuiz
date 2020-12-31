@@ -12,12 +12,12 @@ class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    let viewModel: HomeViewModel
+    let viewModel: HomeViewModelProtocol
     var uiview: HomeView
     
     // MARK: - Init
     
-    init(viewModel: HomeViewModel) {
+    init(viewModel: HomeViewModelProtocol) {
         self.viewModel = viewModel
         uiview = HomeView()
         super.init(nibName: nil, bundle: nil)
@@ -41,16 +41,14 @@ class HomeViewController: UIViewController {
     // MARK: - Functions
     
     func configureView() {
-        uiview.button.addTarget(self, action: #selector(self.handleButton), for: .touchUpInside)
+        uiview.startQuizButton.addTarget(self, action: #selector(self.handleButton), for: .touchUpInside)
     }
     
     // MARK: - Selector
     
     @objc func handleButton() {
-        let viewModel = QuizViewModel()
-        let controller = QuizViewController(viewModel: viewModel)
-        controller.modalPresentationStyle = .fullScreen
-        present(controller, animated: true, completion: nil)
+        let controller = viewModel.quizViewController()
+        present(controller, animated: true)
     }
     
 }

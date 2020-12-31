@@ -23,7 +23,7 @@ class HomeView: UIView {
         return view
     }()
     
-    lazy var button: CustomButton = {
+    lazy var startQuizButton: CustomButton = {
         let view = CustomButton()
         return view
     }()
@@ -48,7 +48,7 @@ extension HomeView: ViewConfiguration {
         sv(
             imageView,
             label,
-            button
+            startQuizButton
         )
     }
     
@@ -58,14 +58,14 @@ extension HomeView: ViewConfiguration {
             50,
             label.centerHorizontally(),
             "",
-            button.right(5%).bottom(5%).left(5%).height(7%)
+            startQuizButton.right(5%).bottom(5%).left(5%).height(7%)
         )
     }
     
     func additionalConfiguration() {
         backgroundColor = .white
         
-        button.setTitle("Iniciar", for: .normal)
+        startQuizButton.setTitle("Iniciar", for: .normal)
         
         imageView.image = UIImage(named: "logo")
         imageView.layer.shadowColor = UIColor().principalColor().cgColor

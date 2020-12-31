@@ -1,0 +1,6 @@
+module Pods_SwiftQuizTests {
+  umbrella header "Pods-SwiftQuizTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

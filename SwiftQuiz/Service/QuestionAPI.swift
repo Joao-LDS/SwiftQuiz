@@ -13,17 +13,17 @@ class QuestionAPI {
     
     let url = "https://swiftquiz-app.herokuapp.com/question"
 
-    func request(onComplete: @escaping ([Question]?) -> Void) {
+    func request(onComplete: @escaping (Error?, [Question]?) -> Void) {
         AF.request(url).responseJSON { response in
             switch response.result {
             case .success:
                 guard let data = response.data else { return }
                 if let questions = try? JSONDecoder().decode([Question].self, from: data) {
-                    onComplete(questions)
+                    onComplete(nil, questions)
                 }
             case .failure(let error):
                 print("Request error: \(error)")
-                onComplete(nil)
+                onComplete(error, nil)
             }
         }
     }

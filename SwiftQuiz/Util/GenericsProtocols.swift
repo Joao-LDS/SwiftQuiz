@@ -10,5 +10,4 @@ import Foundation
 
 protocol QuizViewModelDelegate {
     func presentResultViewController(With result: Result)
-    func updateView()
 }

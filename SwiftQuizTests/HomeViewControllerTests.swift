@@ -6,32 +6,41 @@
 //  Copyright © 2020 João Luis dos Santos. All rights reserved.
 //
 
-import XCTest
+import Quick
+import Nimble
 @testable import SwiftQuiz
 
-class HomeViewControllerTests: XCTestCase {
+class HomeViewModelMock: HomeViewModelProtocol {
     
-    var viewControllerUnderTest: HomeViewController!
-
-    override func setUp() {
-        super.setUp()
-        let viewModel = HomeViewModel()
-        viewControllerUnderTest = HomeViewController(viewModel: viewModel)
-        viewControllerUnderTest.loadViewIfNeeded()
+    var startQuizButtonTapped = false
+    
+    func quizViewController() -> QuizViewController {
+        startQuizButtonTapped = true
+        return QuizViewController(viewModel: QuizViewModel())
     }
     
-    override func tearDown() {
-        viewControllerUnderTest = nil
-        super.tearDown()
-    }
+}
 
-    func testButtonActionWhenTapped() throws {
-        let button = viewControllerUnderTest.uiview.button
-        guard let actions = button.actions(forTarget: viewControllerUnderTest, forControlEvent: .touchUpInside) else {
-            XCTFail("Button doesn't have actions")
-            return
+class HomeViewControllerTests: QuickSpec {
+    
+    override func spec() {
+        describe("HomeViewController") {
+            
+            var sutViewModelMock: HomeViewModelMock!
+            var sut: HomeViewController!
+            
+            beforeEach {
+                sutViewModelMock = HomeViewModelMock()
+                sut = HomeViewController(viewModel: sutViewModelMock)
+            }
+            
+            context("Actions") {
+                it("Start Quiz Button Tap") {
+                    sut.handleButton()
+                    expect(sutViewModelMock.startQuizButtonTapped).to(beTrue())
+                }
+            }
         }
-        XCTAssertTrue(actions.contains("handleButton"))
     }
 
 }

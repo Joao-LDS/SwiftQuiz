@@ -8,25 +8,56 @@
 
 import UIKit
 
+protocol QuizViewModelProtocol {
+    var delegate: QuizViewModelDelegate? { get set }
+    var question: String { get }
+    var options: [String] { get }
+    func fetchQuestions(completion: @escaping(Bool) -> Void)
+    func setCurrencyQuestion()
+    func validateAnswer(at index: Int)
+    func resultViewController() -> ResultViewController
+}
+
 class QuizViewModel {
     
     // MARK: - Properties
     
-    var questions: [Question] = []
-    var currencyQuestion: Question?
-    let webservice =  QuestionAPI()
-    var delegate: QuizViewModelDelegate?
-    var correctAnswer = 0
-    var wrongAnswer = 0
+    private var questions: [Question] = []
+    private var currencyQuestion: Question!
+    private let webservice =  QuestionAPI()
+    private var correctAnswer = 0
+    private var wrongAnswer = 0
     var numberOfQuestions = 0
+    
+    var delegate: QuizViewModelDelegate?
     
     // MARK: - Functions
     
-    func fetchQuestions() {
-        self.webservice.request { response in
+    func increaseNumberOfQuestions() {
+        numberOfQuestions += 1
+    }
+
+    func returnObjectResult() -> Result {
+        return Result(correctAnswers: correctAnswer, wrongAnswers: wrongAnswer, numberOfQuestions: numberOfQuestions)
+    }
+    
+}
+
+extension QuizViewModel: QuizViewModelProtocol {
+    
+    var question: String {
+        currencyQuestion.question
+    }
+    
+    var options: [String] {
+        currencyQuestion.options
+    }
+    
+    func fetchQuestions(completion: @escaping(Bool) -> Void) {
+        self.webservice.request { _, response in
             if let response = response {
                 self.questions = response
-                self.delegate?.updateView()
+                completion(true)
             }
         }
     }
@@ -42,11 +73,6 @@ class QuizViewModel {
         }
     }
     
-    func incrementNumberOfQuestions() {
-        numberOfQuestions += 1
-    }
-
-    
     func validateAnswer(at index: Int) {
         let answer = currencyQuestion?.options[index]
         if answer == currencyQuestion?.correctAnswer {
@@ -54,10 +80,14 @@ class QuizViewModel {
         } else {
             wrongAnswer += 1
         }
+        increaseNumberOfQuestions()
     }
     
-    func returnObjectResult() -> Result {
-        return Result(correctAnswers: correctAnswer, wrongAnswers: wrongAnswer, numberOfQuestions: numberOfQuestions)
+    func resultViewController() -> ResultViewController {
+        let result = returnObjectResult()
+        let viewModel = ResultViewModel(result: result)
+        let controller = ResultViewController(viewModel: viewModel)
+        controller.modalPresentationStyle = .fullScreen
+        return controller
     }
-    
 }

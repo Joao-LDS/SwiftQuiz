@@ -6,45 +6,52 @@
 //  Copyright © 2020 João Luis dos Santos. All rights reserved.
 //
 
-import XCTest
+import Quick
+import Nimble
 @testable import SwiftQuiz
 
-class QuestionModelTests: XCTestCase {
+class QuestionModelTests: QuickSpec {
     
-    var questionJSONData: Data!
-    var arrayJSONData: Data!
-    
-    override func setUp() {
-        super.setUp()
-        if let path = Bundle.main.path(forResource: "question", ofType: "json") {
-            let url = URL(fileURLWithPath: path)
-            questionJSONData = try? Data(contentsOf: url)
+    override func spec() {
+        describe("Question Model") {
+            
+            let decoder = JSONDecoder()
+            
+            context("Parse One Object") {
+                
+                var dataQuestion: Data!
+                
+                beforeEach {
+                    let path = Bundle.main.path(forResource: "question", ofType: "json")
+                    let url = URL(fileURLWithPath: path!)
+                    dataQuestion = try? Data(contentsOf: url)
+                }
+                
+                it("One Question Object") {
+                    let item = try? decoder.decode(Question.self, from: dataQuestion)
+                    expect(item).toNot(beNil())
+                    expect(item?.question).to(equal("Quais desses é string?"))
+                    expect(item?.correctAnswer).to(equal("\"Olá mundo\""))
+                }
+            }
+            
+            context("Parse Array's Object") {
+                
+                var dataQuestionArray: Data!
+                
+                beforeEach {
+                    let path = Bundle.main.path(forResource: "array", ofType: "json")
+                    let url = URL(fileURLWithPath: path!)
+                    dataQuestionArray = try? Data(contentsOf: url)
+                }
+                
+                it("One Question Object") {
+                    let items = try? decoder.decode([Question].self, from: dataQuestionArray)
+                    expect(items).toNot(beNil())
+                    expect(items?.count).to(be(12))
+                }
+            }
         }
-        if let path = Bundle.main.path(forResource: "array", ofType: "json") {
-            let url = URL(fileURLWithPath: path)
-            arrayJSONData = try? Data(contentsOf: url)
-        }
     }
     
-    override func tearDown() {
-        arrayJSONData = nil
-        questionJSONData = nil
-        super.tearDown()
-    }
-
-    func testQuestionResponse() throws {
-        let decoder = JSONDecoder()
-        let item = try decoder.decode(Question.self, from: questionJSONData)
-        
-        XCTAssertEqual(item.question, "Quais desses é string?")
-        XCTAssertEqual(item.correctAnswer, "\"Olá mundo\"")
-    }
-    
-    func testQuestionArrayResponse() throws {
-        let decoder = JSONDecoder()
-        let item = try decoder.decode([Question].self, from: arrayJSONData)
-        
-        XCTAssertEqual(item.count, 12)
-    }
-
 }

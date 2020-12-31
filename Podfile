@@ -5,9 +5,16 @@ target 'SwiftQuiz' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for SwiftQuiz
+  pod 'Alamofire', '~> 5.0.2-rc.2'
+  pod 'SteviaLayout'
 
-pod 'Alamofire', '~> 5.0.2-rc.2'
-pod 'SteviaLayout'
+end
+  
+target 'SwiftQuizTests'do
+  
+  inherit! :search_paths
+
+  pod 'Quick'
+  pod 'Nimble'
 
 end

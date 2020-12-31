@@ -8,4 +8,17 @@
 
 import Foundation
 
-class HomeViewModel { }
+protocol HomeViewModelProtocol {
+    func quizViewController() -> QuizViewController
+}
+
+class HomeViewModel: HomeViewModelProtocol {
+    
+    func quizViewController() -> QuizViewController {
+        let viewModel = QuizViewModel()
+        let controller = QuizViewController(viewModel: viewModel)
+        controller.modalPresentationStyle = .fullScreen
+        return controller
+    }
+    
+}

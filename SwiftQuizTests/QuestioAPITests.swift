@@ -6,36 +6,13 @@
 //  Copyright © 2020 João Luis dos Santos. All rights reserved.
 //
 
-import XCTest
+import Quick
+import Nimble
 @testable import SwiftQuiz
 
-class QuestioAPITests: XCTestCase {
+class QuestioAPITests: QuickSpec {
     
-    var service: QuestionAPI!
-
-    override func setUp() {
-        super.setUp()
-        service = QuestionAPI()
-    }
-
-    override func tearDown() {
-        service = nil
-        super.tearDown()
-    }
-
-    func testResponseRequestQuestionAPI() throws {
-        let promise = expectation(description: "Request successfully")
+    override func spec() {
         
-        service.request { questions in
-            XCTAssertNotNil(questions, "Response from API is nil")
-            promise.fulfill()
-        }
-        
-        waitForExpectations(timeout: 10) { error in
-            if let error = error {
-                XCTFail("testResponseRequestQuestionAPI fail: \(error.localizedDescription) ")
-            }
-        }
     }
-
 }

@@ -6,36 +6,29 @@
 //  Copyright © 2020 João Luis dos Santos. All rights reserved.
 //
 
-import XCTest
+import Quick
+import Nimble
 @testable import SwiftQuiz
 
-class QuizViewModelTests: XCTestCase {
+class QuizViewModelTests: QuickSpec {
 
-    var sut: QuizViewModel!
-    
-    override func setUp() {
-        super.setUp()
-        sut = QuizViewModel()
-    }
-    
-    override func tearDown() {
-        sut = nil
-        super.tearDown()
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    override func spec() {
+        describe("QuizViewModel") {
+            
+            var sut: QuizViewModel!
+            
+            context("QuizViewModelProtocol") {
+                it("Verify QuizViewModelProtocol") {
+                    sut = QuizViewModel()
+                    expect(sut).to(beAKindOf(QuizViewModelProtocol.self))
+                }
+            }
+            
+            context("Increase Number os Questions") {
+                sut = QuizViewModel()
+                sut.increaseNumberOfQuestions()
+                expect(sut.numberOfQuestions).to(equal(1))
+            }
         }
     }
 
