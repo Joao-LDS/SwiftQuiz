@@ -10,7 +10,7 @@
 <img src="/SwiftQuiz/Support/Screenshots/main.png" width="220" height="460"> <img src="/SwiftQuiz/Support/Screenshots/quiz.png" width="220" height="460"> <img src="/SwiftQuiz/Support/Screenshots/end.png" width="220" height="460">
 
 ### O que falta
-* Unit Test e UI Test - 20%
+* Unit Test e UI Test - 40%
 
 ### Tecnologias
 
