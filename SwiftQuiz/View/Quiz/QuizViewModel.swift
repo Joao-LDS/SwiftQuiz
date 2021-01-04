@@ -9,11 +9,11 @@
 import UIKit
 
 protocol QuizViewModelProtocol {
-    var delegate: QuizViewModelDelegate? { get set }
     var question: String { get }
     var options: [String] { get }
+    var example: String { get set }
     func fetchQuestions(completion: @escaping(Bool) -> Void)
-    func setCurrencyQuestion()
+    func setCurrencyQuestion() -> Bool
     func validateAnswer(at index: Int)
     func resultViewController() -> ResultViewController
 }
@@ -22,22 +22,29 @@ class QuizViewModel {
     
     // MARK: - Properties
     
-    private var questions: [Question] = []
-    private var currencyQuestion: Question!
-    private let webservice =  QuestionAPI()
-    private var correctAnswer = 0
-    private var wrongAnswer = 0
-    var numberOfQuestions = 0
+    var questions: [Question] = []
+    var currentQuestion: Question!
+    let webservice: QuestionAPIProtocol
+    var correctAnswer = 0
+    var wrongAnswer = 0
+    var example: String
     
-    var delegate: QuizViewModelDelegate?
+    
+    // MARK: - Init
+    
+    init(webservice: QuestionAPIProtocol = QuestionAPI()) {
+        self.webservice = webservice
+        self.example = ""
+    }
     
     // MARK: - Functions
     
-    func increaseNumberOfQuestions() {
-        numberOfQuestions += 1
+    func numberOfQuestions() -> Int {
+        correctAnswer + wrongAnswer
     }
 
     func returnObjectResult() -> Result {
+        let numberOfQuestions = self.numberOfQuestions()
         return Result(correctAnswers: correctAnswer, wrongAnswers: wrongAnswer, numberOfQuestions: numberOfQuestions)
     }
     
@@ -46,41 +53,49 @@ class QuizViewModel {
 extension QuizViewModel: QuizViewModelProtocol {
     
     var question: String {
-        currencyQuestion.question
+        currentQuestion.question
     }
     
     var options: [String] {
-        currencyQuestion.options
+        currentQuestion.options
     }
     
-    func fetchQuestions(completion: @escaping(Bool) -> Void) {
-        self.webservice.request { _, response in
-            if let response = response {
+    func fetchQuestions(completion: @escaping(Bool) -> ()) {
+        self.webservice.request { error, response in
+            if let error = error {
+                switch error {
+                case .errorResponse:
+                    self.example = "No Data"
+                case .noData:
+                    self.example = "Error Response"
+                }
+                completion(false)
+            } else if let response = response {
                 self.questions = response
+                self.example = "Sucess"
                 completion(true)
             }
         }
     }
     
-    func setCurrencyQuestion() {
+    func setCurrencyQuestion() -> Bool {
         if questions.isEmpty == false {
             let index = Int.random(in: 0..<questions.count)
-            currencyQuestion = questions[index]
+            currentQuestion = questions[index]
             questions.remove(at: index)
+            return true
         } else {
-            let result = returnObjectResult()
-            delegate?.presentResultViewController(With: result)
+            return false
         }
     }
     
     func validateAnswer(at index: Int) {
-        let answer = currencyQuestion?.options[index]
-        if answer == currencyQuestion?.correctAnswer {
+        let answer = currentQuestion?.options[index]
+        if answer == currentQuestion?.correctAnswer {
             correctAnswer += 1
         } else {
             wrongAnswer += 1
         }
-        increaseNumberOfQuestions()
     }
     
     func resultViewController() -> ResultViewController {

@@ -27,6 +27,13 @@ class HomeViewModelTests: QuickSpec {
                     expect(sut).to(beAKindOf(HomeViewModelProtocol.self))
                 }
             }
+            
+            context("Quiz View Controller") {
+                it("Verify Return QuizViewController") {
+                    let quizvc = sut.quizViewController()
+                    expect(quizvc).to(beAKindOf(QuizViewController.self))
+                }
+            }
         }
     }
     

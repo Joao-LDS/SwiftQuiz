@@ -29,6 +29,8 @@
 		E81CE36924B90DAC000362B5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CE35F24B90DAC000362B5 /* CustomButton.swift */; };
 		E81CE36A24B90DAC000362B5 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CE36024B90DAC000362B5 /* CustomLabel.swift */; };
 		E81CE36D24B90E65000362B5 /* myriad-set-pro_text.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E81CE36C24B90E65000362B5 /* myriad-set-pro_text.ttf */; };
+		E836B1A025A3824C00662E10 /* QuestionAPIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E836B19F25A3824B00662E10 /* QuestionAPIMock.swift */; };
+		E836B1A225A391DF00662E10 /* QuizViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E836B1A125A391DF00662E10 /* QuizViewControllerTests.swift */; };
 		E84E526024852CEE00715531 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E525F24852CEE00715531 /* AppDelegate.swift */; };
 		E84E526C24852CEE00715531 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E84E526B24852CEE00715531 /* Assets.xcassets */; };
 		E86293B3259BA04900A1745A /* array.json in Resources */ = {isa = PBXBuildFile; fileRef = E86293B2259BA04900A1745A /* array.json */; };
@@ -40,7 +42,6 @@
 		E89CC941259B5E81002D38B8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89CC940259B5E81002D38B8 /* HomeView.swift */; };
 		E89CC943259B68AE002D38B8 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89CC942259B68AE002D38B8 /* QuizView.swift */; };
 		E89CC945259B7B3D002D38B8 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89CC944259B7B3D002D38B8 /* ResultView.swift */; };
-		E89CC947259B828B002D38B8 /* GenericsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89CC946259B828B002D38B8 /* GenericsProtocols.swift */; };
 		E8AD8182259E63CE00314FFA /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD8181259E63CE00314FFA /* HomeViewModelTests.swift */; };
 		E8BAFF5424ABA75200F80DA2 /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BAFF5324ABA75200F80DA2 /* ViewConfiguration.swift */; };
 /* End PBXBuildFile section */
@@ -96,6 +97,8 @@
 		E81CE35F24B90DAC000362B5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		E81CE36024B90DAC000362B5 /* CustomLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		E81CE36C24B90E65000362B5 /* myriad-set-pro_text.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "myriad-set-pro_text.ttf"; sourceTree = "<group>"; };
+		E836B19F25A3824B00662E10 /* QuestionAPIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAPIMock.swift; sourceTree = "<group>"; };
+		E836B1A125A391DF00662E10 /* QuizViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewControllerTests.swift; sourceTree = "<group>"; };
 		E84E525C24852CEE00715531 /* SwiftQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E84E525F24852CEE00715531 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E84E526B24852CEE00715531 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,7 +114,6 @@
 		E89CC940259B5E81002D38B8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E89CC942259B68AE002D38B8 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		E89CC944259B7B3D002D38B8 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
-		E89CC946259B828B002D38B8 /* GenericsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericsProtocols.swift; sourceTree = "<group>"; };
 		E8AD8181259E63CE00314FFA /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		E8BAFF5324ABA75200F80DA2 /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
 		F64FA4E3CFACA49C7E4C80AC /* Pods-SwiftQuizTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftQuizTests.release.xcconfig"; path = "Target Support Files/Pods-SwiftQuizTests/Pods-SwiftQuizTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -310,6 +312,8 @@
 			children = (
 				E8AD8181259E63CE00314FFA /* HomeViewModelTests.swift */,
 				E86293C7259BB05F00A1745A /* HomeViewControllerTests.swift */,
+				E836B19F25A3824B00662E10 /* QuestionAPIMock.swift */,
+				E836B1A125A391DF00662E10 /* QuizViewControllerTests.swift */,
 				E86293C9259BCAFB00A1745A /* QuizViewModelTests.swift */,
 				E86293C5259BAAE300A1745A /* QuestioAPITests.swift */,
 				E86293BB259BA08200A1745A /* QuestionModelTests.swift */,
@@ -323,7 +327,6 @@
 			children = (
 				E8BAFF5324ABA75200F80DA2 /* ViewConfiguration.swift */,
 				E809959E24BCA96400B695AC /* ExtensionUIColor.swift */,
-				E89CC946259B828B002D38B8 /* GenericsProtocols.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -519,7 +522,6 @@
 				E81CE36624B90DAC000362B5 /* QuizViewModel.swift in Sources */,
 				E8BAFF5424ABA75200F80DA2 /* ViewConfiguration.swift in Sources */,
 				E81CE36224B90DAC000362B5 /* HomeViewModel.swift in Sources */,
-				E89CC947259B828B002D38B8 /* GenericsProtocols.swift in Sources */,
 				CF7217E224881DF3003A2FE3 /* QuestionAPI.swift in Sources */,
 				E81CE36A24B90DAC000362B5 /* CustomLabel.swift in Sources */,
 				E81CE36324B90DAC000362B5 /* HomeViewController.swift in Sources */,
@@ -541,8 +543,10 @@
 			files = (
 				E8AD8182259E63CE00314FFA /* HomeViewModelTests.swift in Sources */,
 				E86293BC259BA08200A1745A /* QuestionModelTests.swift in Sources */,
+				E836B1A025A3824C00662E10 /* QuestionAPIMock.swift in Sources */,
 				E86293C8259BB05F00A1745A /* HomeViewControllerTests.swift in Sources */,
 				E86293C6259BAAE300A1745A /* QuestioAPITests.swift in Sources */,
+				E836B1A225A391DF00662E10 /* QuizViewControllerTests.swift in Sources */,
 				E86293CA259BCAFB00A1745A /* QuizViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

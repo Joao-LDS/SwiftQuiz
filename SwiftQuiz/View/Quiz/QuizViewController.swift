@@ -31,11 +31,7 @@ class QuizViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewModel()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        fetchQuestions()
     }
     
     override func loadView() {
@@ -44,31 +40,48 @@ class QuizViewController: UIViewController {
     
     // MARK: - Functions
     
-    func setupViewModel() {
-        viewModel.fetchQuestions { finish in
-            if finish == true {
+    func fetchQuestions() {
+        viewModel.fetchQuestions { sucess in
+            if sucess == true {
                 self.configureView()
-                self.configureButtonsOptionsTarget()
-                self.viewModel.delegate = self
+                self.configureHandleButtons()
+            } else {
+                self.presentAlertWithError()
             }
         }
     }
     
     func configureView() {
-        viewModel.setCurrencyQuestion()
-        uiview.questionLabel.text = viewModel.question
-        uiview.closeButton.addTarget(self, action: #selector(self.handleCloseButton), for: .touchUpInside)
-        
-        let options = viewModel.options
-        for i in 0..<uiview.optionsButtons.count {
-            uiview.optionsButtons[i].setTitle(options[i], for: .normal)
+        let setNewQuestions = viewModel.setCurrencyQuestion()
+        if setNewQuestions == true {
+            uiview.questionLabel.text = viewModel.question
+            
+            let options = viewModel.options
+            for i in 0..<uiview.optionsButtons.count {
+                uiview.optionsButtons[i].setTitle(options[i], for: .normal)
+            }
+        } else {
+            presentResultViewController()
         }
     }
     
-    func configureButtonsOptionsTarget() {
+    func configureHandleButtons() {
+        uiview.closeButton.addTarget(self, action: #selector(self.handleCloseButton), for: .touchUpInside)
+        
         for i in 0..<uiview.optionsButtons.count {
             uiview.optionsButtons[i].addTarget(self, action: #selector(self.handleOption(_:)), for: .touchUpInside)
         }
+    }
+    
+    func presentResultViewController() {
+        let controller = viewModel.resultViewController()
+        present(controller, animated: true, completion: nil)
+    }
+    
+    func presentAlertWithError() {
+        let alert = UIAlertController(title: "Desculpe", message: "Não foi possível carregar o quiz.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        present(alert, animated: true)
     }
     
     // MARK: - Selector
@@ -82,16 +95,5 @@ class QuizViewController: UIViewController {
     @objc func handleCloseButton() {
         dismiss(animated: true)
     }
-    
+ 
 }
-
-// MARK: - QuizViewModelDelegate
-
-extension QuizViewController: QuizViewModelDelegate {
-    
-    func presentResultViewController(With result: Result) {
-        let controller = viewModel.resultViewController()
-        present(controller, animated: true, completion: nil)
-    }
-}
-

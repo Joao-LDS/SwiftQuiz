@@ -9,22 +9,35 @@
 import Foundation
 import Alamofire
 
-class QuestionAPI {
+enum QuestionAPIError {
+    case errorResponse
+    case noData
+}
+
+protocol QuestionAPIProtocol {
+    func request(onComplete: @escaping (QuestionAPIError?, [Question]?) -> ())
+}
+
+class QuestionAPI: QuestionAPIProtocol {
     
     let url = "https://swiftquiz-app.herokuapp.com/question"
 
-    func request(onComplete: @escaping (Error?, [Question]?) -> Void) {
+    func request(onComplete: @escaping (QuestionAPIError?, [Question]?) -> ()) {
         AF.request(url).responseJSON { response in
             switch response.result {
             case .success:
-                guard let data = response.data else { return }
+                guard let data = response.data else {
+                    onComplete(.noData, nil)
+                    return
+                }
                 if let questions = try? JSONDecoder().decode([Question].self, from: data) {
                     onComplete(nil, questions)
                 }
             case .failure(let error):
                 print("Request error: \(error)")
-                onComplete(error, nil)
+                onComplete(.errorResponse, nil)
             }
         }
+        
     }
 }

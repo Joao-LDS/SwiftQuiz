@@ -17,6 +17,18 @@ class QuizViewModelTests: QuickSpec {
             
             var sut: QuizViewModel!
             
+            context("QuizViewModel") {
+                it("Return Object Result And Number Of Question") {
+                    sut = QuizViewModel()
+                    sut.correctAnswer = 9
+                    sut.wrongAnswer = 3
+                    let result = sut.returnObjectResult()
+                    expect(result.correctAnswers).to(equal(9))
+                    expect(result.wrongAnswers).to(equal(3))
+                    expect(result.numberOfQuestions).to(equal(12))
+                }
+            }
+            
             context("QuizViewModelProtocol") {
                 it("Verify QuizViewModelProtocol") {
                     sut = QuizViewModel()
@@ -24,11 +36,29 @@ class QuizViewModelTests: QuickSpec {
                 }
             }
             
-            context("Increase Number os Questions") {
-                sut = QuizViewModel()
-                sut.increaseNumberOfQuestions()
-                expect(sut.numberOfQuestions).to(equal(1))
+            context("QuizViewModelProtocol") {
+                it("Sucess") {
+                    sut = QuizViewModel(webservice: QuestionAPIMock(example: .sucess))
+                    sut.fetchQuestions { _ in
+                        expect(sut.example).to(equal("Sucess"))
+                    }
+                }
+                
+                it("With No Data") {
+                    sut = QuizViewModel(webservice: QuestionAPIMock(example: .noData))
+                    sut.fetchQuestions { _ in
+                        expect(sut.example).to(equal("No Data"))
+                    }
+                }
+                
+                it("With Error Response") {
+                    sut = QuizViewModel(webservice: QuestionAPIMock(example: .errorResponse))
+                    sut.fetchQuestions { _ in
+                        expect(sut.example).to(equal("Error Response"))
+                    }
+                }
             }
+            
         }
     }
 
